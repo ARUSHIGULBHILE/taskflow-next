@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* =========================================================
+   THEME TOKENS (Tailwind v4)
+   - These tokens power classes like:
+     bg-background, text-foreground, border-border,
+     text-muted-foreground, bg-card, etc.
+   ========================================================= */
+@theme {
+  /* Base palette */
+  --color-background: #f7f7ff;
+  --color-foreground: #0f172a;
+
+  --color-card: #ffffff;
+  --color-card-foreground: #0f172a;
+
+  --color-secondary: #eef2ff;
+  --color-secondary-foreground: #0f172a;
+
+  --color-accent: #2563eb; /* links, highlights */
+  --color-accent-foreground: #ffffff;
+
+  --color-primary: #1d4ed8; /* main brand */
+  --color-primary-foreground: #ffffff;
+
+  --color-border: #0f172a;
+
+  --color-muted-foreground: #475569;
+
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+
+  /* Status backgrounds (you used bg-status-*) */
+  --color-status-todo: #fde68a;
+  --color-status-progress: #bfdbfe;
+  --color-status-done: #bbf7d0;
+
+  /* Status text colors (you used text-status-*-text) */
+  --color-status-todo-text: #7a5d00;
+  --color-status-progress-text: #0b3aa9;
+  --color-status-done-text: #0f6a2a;
+
+  /* Priority backgrounds (you used bg-priority-*) */
+  --color-priority-high: #fecaca;
+  --color-priority-medium: #fed7aa;
+  --color-priority-low: #bbf7d0;
+
+  /* Priority text colors (you used text-priority-*-text) */
+  --color-priority-high-text: #7f1d1d;
+  --color-priority-medium-text: #7c2d12;
+  --color-priority-low-text: #14532d;
+}
+
+/* =========================================================
+   BASE STYLES
+   ========================================================= */
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  /* nicer selection */
+  ::selection {
+    background: color-mix(in srgb, var(--color-primary) 25%, transparent);
+  }
+}
+
+/* =========================================================
+   COMPONENT / UTILITY CLASSES
+   ========================================================= */
+@layer utilities {
+  /* ---- Animations ---- */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 180ms ease-out;
+  }
+
+  /* ---- Neubrutalist helpers ---- */
+  .shadow-neubrutalist {
+    box-shadow: 4px 4px 0 var(--color-border);
+  }
+
+  .shadow-neubrutalist-active {
+    box-shadow: 2px 2px 0 var(--color-border);
+  }
+
+  .shadow-neubrutalist-lg {
+    box-shadow: 6px 6px 0 var(--color-border);
+  }
+
+  .neubrutalist-card {
+    border: 2px solid var(--color-border);
+    border-radius: 18px;
+    box-shadow: 5px 5px 0 var(--color-border);
+  }
+
+  .neubrutalist-button {
+    border: 2px solid var(--color-border);
+    border-radius: 14px;
+    box-shadow: 4px 4px 0 var(--color-border);
+    transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+  }
+
+  .neubrutalist-button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--color-border);
+  }
+
+  /* ---- Docs: lifecycle step styling ---- */
+  .lifecycle-step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px;
+    border-radius: 16px;
+    border: 2px solid var(--color-border);
+    background: var(--color-card);
+    box-shadow: 4px 4px 0 var(--color-border);
+    transition: background 200ms ease, color 200ms ease, transform 120ms ease;
+  }
+
+  .lifecycle-step.active {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+    transform: translateY(-1px);
+  }
+
+  .lifecycle-step.active p {
+    color: color-mix(in srgb, var(--color-primary-foreground) 80%, transparent);
+  }
+
+  /* Optional: smoother looking containers */
+  .container {
+    max-width: 1200px;
+  }
+}
